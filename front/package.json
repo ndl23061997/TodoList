@@ -5,11 +5,13 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^7.0.0",
+    "dotenv-expand": "^5.1.0",
     "react": "^16.8.6",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "superagent": "^5.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

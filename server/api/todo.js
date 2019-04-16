@@ -39,10 +39,11 @@ function postAddTodo (req, res ) {
     let { title , completed } = req.body;
     let data = {title, completed};
     todo = new Todo(data);
+    console.log(data);
     todo.save()
         .then(result => {
             console.log(result);
-            return res.json({added : 1});
+            return res.json({added : 1, data : result});
         }) 
         .catch(error => {
             console.log(error);

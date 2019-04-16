@@ -2,29 +2,37 @@ import React, { Component } from "react";
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import "./App.css";
-import uuid from "uuid";
 import Header from "./components/layout/Header";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import About from "./components/pages/About";
 import axios from 'axios';
-const serverUrl = process.env.SERVER_URL || 'http://localhost:2307/api';
+
+var dotenv = require('dotenv')
+var dotenvExpand = require('dotenv-expand')
+
+var myEnv = dotenv.config()
+dotenvExpand(myEnv)
+
+const serverUrl = process.env.SERVER_URL || 'http://negoo.tk:2307/api';
 class App extends Component {
   state = {
     todos: []
   };
 
   componentDidMount() {
+    console.log(process.env);
     let url = serverUrl + '/todo/l/0-10';
     axios.get(url)
       .then(result => {
-        result.data.map(e => (e.id = e._id, delete e._id));
+        // console.log(result.data);
+        result.data.map(e => (e.id = e._id));
         console.log(result.data);
         this.setState({todos : result.data});
       })
   }
 
   // Toggle Complete
-  markComplete = (id) => {
+  markComplete = id => {
     console.log(id);
     let url = serverUrl + '/todo/u/' + id;
     this.setState({
@@ -41,7 +49,7 @@ class App extends Component {
     });
   };
 
-  onBtnDeleteClick = (id) => {
+  onBtnDeleteClick = id => {
     console.log('id',id);
     let url = serverUrl + '/todo/d/' + id;
     axios.post(url)
