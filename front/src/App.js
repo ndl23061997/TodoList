@@ -20,20 +20,20 @@ class App extends Component {
   };
 
   componentDidMount() {
-    console.log(process.env);
+    // console.log(process.env);
     let url = serverUrl + '/todo/l/0-10';
     axios.get(url)
       .then(result => {
         // console.log(result.data);
         result.data.map(e => (e.id = e._id));
-        console.log(result.data);
+        // console.log(result.data);
         this.setState({todos : result.data});
       })
   }
 
   // Toggle Complete
   markComplete = (id) => {
-    console.log(id);
+    // console.log(id);
     let url = serverUrl + '/todo/u/' + id;
     this.setState({
       todos: this.state.todos.map(todo => {
@@ -50,23 +50,23 @@ class App extends Component {
   };
 
   onBtnDeleteClick = id => {
-    console.log('id',id);
+    // console.log('id',id);
     let url = serverUrl + '/todo/d/' + id;
     axios.post(url)
       .then(result => {
-        console.log(result.data);
+        // console.log(result.data);
         this.state.todos.splice(this.state.todos.findIndex(todo => todo.id === id), 1);
         this.setState({
           todos: this.state.todos
         });
       })
       .catch(error => {
-        console.log(error.response);
+        // console.log(error.response);
       })
   };
 
   addTodo = title => {
-    console.log("Add Todo");
+    // console.log("Add Todo");
     let url = serverUrl + '/todo/a';
     let todo = {
       title: title,
@@ -78,7 +78,7 @@ class App extends Component {
       .then(result => {
         console.log('add result ', result.data);
         todo.id = result.data.data._id;
-        console.log('New todo', todo);
+        // console.log('New todo', todo);
         this.setState({ todos: [...this.state.todos, todo] });
       })
       .catch(error => {
