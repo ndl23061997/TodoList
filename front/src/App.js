@@ -76,8 +76,9 @@ class App extends Component {
 
     axios.post(url, todo)
       .then(result => {
-        console.log(result.data);
+        console.log('add result ', result.data);
         todo.id = result.data.data._id;
+        console.log('New todo', todo);
         this.setState({ todos: [...this.state.todos, todo] });
       })
       .catch(error => {
