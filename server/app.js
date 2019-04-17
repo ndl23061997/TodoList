@@ -13,12 +13,12 @@ const port = process.env.PORT || 2306;
 // set up middleware
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(express.static('build'));
+app.use(express.static('build'));
 
 // Get index app
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // setup Router
 app.use('/api', router);
