@@ -13,7 +13,7 @@ var dotenvExpand = require('dotenv-expand')
 var myEnv = dotenv.config()
 dotenvExpand(myEnv)
 
-const serverUrl = process.env.SERVER_URL || 'http://localhost:2307/api';
+const serverUrl = process.env.SERVER_URL || 'http://35.198.211.251:2307/api';
 class App extends Component {
   state = {
     todos : []
