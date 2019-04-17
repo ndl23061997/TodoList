@@ -13,10 +13,10 @@ var dotenvExpand = require('dotenv-expand')
 var myEnv = dotenv.config()
 dotenvExpand(myEnv)
 
-const serverUrl = process.env.SERVER_URL || 'http://negoo.tk:2307/api';
+const serverUrl = process.env.SERVER_URL || 'http://localhost:2307/api';
 class App extends Component {
   state = {
-    todos: []
+    todos : []
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   // Toggle Complete
-  markComplete = id => {
+  markComplete = (id) => {
     console.log(id);
     let url = serverUrl + '/todo/u/' + id;
     this.setState({
@@ -76,6 +76,7 @@ class App extends Component {
     axios.post(url, todo)
       .then(result => {
         console.log(result);
+        todo.id = result.data._id;
         this.setState({ todos: [...this.state.todos, todo] });
       })
       .catch(error => {
