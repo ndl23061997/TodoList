@@ -70,7 +70,8 @@ class App extends Component {
     let url = serverUrl + '/todo/a';
     let todo = {
       title: title,
-      completed: false
+      completed: false,
+      id : ''
     };
 
     axios.post(url, todo)
